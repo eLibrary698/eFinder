@@ -1,0 +1,45 @@
+2024-09-18T14:31:49.238Z: r
+2024-09-18T14:31:50.327Z: 年i
+2024-09-18T14:31:51.410Z: rhi
+2024-09-18T14:31:53.407Z: 牛津
+2024-09-18T14:32:05.210Z: 牛津
+2024-09-18T14:32:09.762Z: 牛津
+2024-09-18T14:35:18.421Z: o
+2024-09-18T14:35:20.796Z: r
+2024-09-18T14:35:21.899Z: 牛津
+2024-09-18T14:35:56.677Z: 书虫•牛津英汉双语读物：1级全套(套装共31册).mobi
+2024-09-18T14:35:59.288Z: 书虫•牛津英汉双语读物：1级全套(套装共31册).mobi
+2024-09-18T14:36:01.114Z: 书虫•牛津英汉双语读物：1级全套(套装共31册).mobi
+2024-09-18T14:36:04.061Z: 书虫•牛津英汉双语读物：1级全套(套装共31册).mobi
+2024-09-18T14:36:05.828Z: 书虫•牛津英汉双语读物：1级全套(套装共31册).mob
+2024-09-18T14:36:08.283Z: 书虫•牛津英汉双语读物：1级全套(套装共31册)
+2024-09-18T14:36:11.813Z: 书虫•牛津英汉双语读物
+2024-09-18T14:36:13.297Z: 书虫•牛津英汉双语读物
+2024-09-18T14:36:14.299Z: 书虫•牛津英汉双语读物
+2024-09-18T14:36:19.163Z: 书虫•牛津英汉双语读物：1级全套(套装共31册).mobi
+2024-09-18T14:36:20.868Z: 书虫•牛津英汉双语读物：1级全套(套装共31册).mobi
+2024-09-18T14:37:55.114Z: 书虫•牛津英汉双语读物：1级全套(套装共31册).mobi
+2024-09-18T14:38:04.937Z: 牛津英汉双语读物：1级全套(套装共31册).mobi
+2024-09-18T14:38:07.963Z: 牛津英汉双语读物
+2024-09-18T14:38:09.454Z: 牛津英汉双语读物
+2024-09-18T14:38:11.213Z: 牛津英汉双语读物
+2024-09-18T14:39:18.638Z: mac@macdeMacBook-Pro eFinder % node server.js Loaded 89346 books from booklist.xlsx Server running at http://localhost:3000 Searching for: "牛津" (Page 1) search: 16.294ms Search result: Not found (0 total results) Searching for: "书虫•牛津英汉双语读物：1级全套(套装共31册).mobi" (Page 1) search: 13.728ms Search result: Not found (0 total results) Searching for: "书虫•牛津英汉双语读物：1级全套(套装共31册).mobi" (Page 1) search: 8.674ms Search result: Not found (0 total results) Searching for: "书虫•牛津英汉双语读物：1级全套(套装共31册).mobi" (Page 1) search: 5.979ms Search result: Not found (0 total results) Searching for: "书虫•牛津英汉双语读物：1级全套(套装共31册)" (Page 1) search: 6.041ms Search result: Not found (0 total results) Searching for: "书虫•牛津英汉双语读物" (Page 1) search: 6.886ms Search result: Not found (0 total results) Searching for: "书虫•牛津英汉双语读物" (Page 1) search: 6.014ms Search result: Not found (0 total results) Searching for: "书虫•牛津英汉双语读物：1级全套(套装共31册).mobi" (Page 1) search: 6.981ms Search result: Not found (0 total results) ^C mac@macdeMacBook-Pro eFinder % node server.js Loaded 89346 books from booklist.xlsx Server running at http://localhost:3000 Searching for: "书虫•牛津英汉双语读物：1级全套(套装共31册).mobi" (Page 1) Raw search results: 0 First result: None search: 11.611ms Search result: Not found (0 total results) Sending response: {"found":false,"totalResults":0,"currentPage":1,"totalPages":0,"results":[]} Searching for: "书虫•牛津英汉双语读物：1级全套(套装共31册).mobi" (Page 1) Raw search results: 0 First result: None search: 8.902ms Search result: Not found (0 total results) Sending response: {"found":false,"totalResults":0,"currentPage":1,"totalPages":0,"results":[]} Searching for: "牛津英汉双语读物" (Page 1) Raw search results: 0 First result: None search: 8.032ms Search result: Not found (0 total results) Sending response: {"found":false,"totalResults":0,"currentPage":1,"totalPages":0,"results":[]} Searching for: "牛津英汉双语读物" (Page 1) Raw search results: 0 First result: None search: 8.637ms Search result: Not found (0 total results) Sending response: {"found":false,"totalResults":0,"currentPage":1,"totalPages":0,"results":[]} Searching for: "牛津英汉双语读物" (Page 1) Raw search results: 0 First result: None search: 7.264ms Search result: Not found (0 total results) Sending response: {"found":false,"totalResults":0,"currentPage":1,"totalPages":0,"results":[]}
+2024-09-18T14:39:20.910Z: 
+2024-09-18T14:39:23.092Z: r
+2024-09-18T14:39:24.228Z: r
+2024-09-18T14:39:25.356Z: rh
+2024-09-18T14:39:27.475Z: 牛津
+2024-09-18T14:39:41.505Z: 牛津英汉双语读物
+2024-09-18T14:39:43.042Z: 牛津英汉双语读物
+2024-09-18T14:40:55.060Z: r
+2024-09-18T14:40:56.076Z: 牛津
+2024-09-18T14:41:24.996Z: House of Night
+2024-09-18T14:41:26.805Z: House of Night
+2024-09-18T14:41:28.074Z: House of Night
+2024-09-18T14:41:41.279Z: 第三级
+2024-09-18T14:41:42.621Z: 第三级
+2024-09-18T14:41:43.823Z: 第三级
+2024-09-18T14:41:46.106Z: 第三级
+2024-09-18T14:42:19.780Z: My Weird School Complete Collection
+2024-09-18T14:42:22.439Z: My Weird School Complete Collection
+2024-09-18T14:42:23.748Z: My Weird School Complete Collection

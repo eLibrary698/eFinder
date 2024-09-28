@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="title">E-book and Video Finder Service</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        .search-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        #searchInput {
+            flex-grow: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        #result {
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        #result.has-content {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .language-selector {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .language-selector button {
+            background-color: transparent;
+            color: #3498db;
+            border: 1px solid #3498db;
+            padding: 8px 12px;
+            margin-left: 10px;
+        }
+        .language-selector button:hover {
+            background-color: #3498db;
+            color: #fff;
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+            display: none;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 10px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            .search-container {
+                flex-direction: column;
+            }
+            #searchInput, button {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+
+        .email-container {
+            display: none;  /* 默认隐藏 */
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+            align-items: center;
+        }
+        #emailInput {
+            flex-grow: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        /* 移��端适配 */
+        @media (max-width: 600px) {
+            .email-container {
+                flex-direction: column;
+            }
+            #emailInput, .email-container button {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="language-selector">
+            <button onclick="changeLanguage('en')">English</button>
+            <button onclick="changeLanguage('zh')">中文</button>
+        </div>
+
+        <h1 data-i18n="header">E-book and Video Finder Service</h1>
+        
+        <div class="search-container">
+            <input type="text" id="searchInput" data-i18n-placeholder="searchPlaceholder" placeholder="Enter e-book or video name">
+            <button onclick="search()" data-i18n="searchButton">Find</button>
+        </div>
+        
+        <div id="loader" class="loader"></div>
+        
+        <div id="result"></div>
+        
+        <div class="email-container">
+            <input type="email" id="emailInput" data-i18n-placeholder="emailPlaceholder" placeholder="Your email address">
+            <button id="submitEmail" onclick="submitEmail()" data-i18n="submitButton">Submit</button>
+        </div>
+
+        <!-- 移除 IPv6 测试 div -->
+    </div>
+
+    <script>
+        const i18n = {
+            zh: {
+                title: "电子书和视频代找服务",
+                header: "电子书和视频代找服务",
+                searchPlaceholder: "输入电子书或视频名称",
+                searchButton: "查找",
+                emailPlaceholder: "您的电子邮箱",
+                submitButton: "提交",
+                resultsFound: "我们已找到相关内容。请留下您的电子邮箱，我们会尽快与您联系。",
+                noResults: "我们暂时没找到相关内容。请留下您的电子邮箱，我们会继续为您查找并在1-3天内回复您。",
+                prevPage: "上一页",
+                nextPage: "下一页",
+                searchError: "搜索时发生错误，请稍后再试。",
+                emailSent: "邮件已发送，我们会尽快处理您的请求！",
+                emailError: "邮件发送失败，请后再试。",
+                ipv6Supported: "您的网络支持 IPv6",
+                ipv6NotSupported: "您的网络不支持 IPv6",
+                ipv6TestFailed: "IPv6 测试失败，请稍后再试"
+            },
+            en: {
+                title: "E-book and Video Finder Service",
+                header: "E-book and Video Finder Service",
+                searchPlaceholder: "Enter e-book or video name",
+                searchButton: "Find",
+                emailPlaceholder: "Your email address",
+                submitButton: "Submit",
+                resultsFound: "We have found relevant content. Please leave your email address and we will contact you soon.",
+                noResults: "We haven't found any relevant content at the moment. Please leave your email address and we will continue searching and reply to you within 1-3 days.",
+                prevPage: "Previous",
+                nextPage: "Next",
+                searchError: "An error occurred during search. Please try again later.",
+                emailSent: "Email sent. We will process your request as soon as possible!",
+                emailError: "Failed to send email. Please try again later.",
+                ipv6Supported: "Your network supports IPv6",
+                ipv6NotSupported: "Your network does not support IPv6",
+                ipv6TestFailed: "IPv6 test failed, please try again later"
+            }
+        };
+
+        let currentLanguage = 'en';  // 将默认语言改为英文
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            document.documentElement.lang = lang;
+            document.title = i18n[lang].title;
+            document.querySelectorAll('[data-i18n]').forEach(elem => {
+                elem.textContent = i18n[lang][elem.getAttribute('data-i18n')];
+            });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(elem => {
+                elem.placeholder = i18n[lang][elem.getAttribute('data-i18n-placeholder')];
+            });
+            // 更新搜索结果（如果有的）
+            updateSearchResults();
+        }
+
+        function updateSearchResults() {
+            const resultDiv = document.getElementById('result');
+            if (resultDiv.innerHTML.includes(i18n[currentLanguage === 'zh' ? 'en' : 'zh'].resultsFound)) {
+                // 如果有搜索结果，重新执行搜索以更新语言
+                search(getCurrentPage());
+            } else if (resultDiv.innerHTML !== '') {
+                // 如果有搜索结果但有内，更新为当前语言的 "无结果" 消息
+                resultDiv.innerHTML = i18n[currentLanguage].noResults;
+            }
+        }
+
+        function getCurrentPage() {
+            // 从结果文本中提取当前页码
+            const resultText = document.getElementById('result').innerHTML;
+            const match = resultText.match(/Page (\d+)/);
+            return match ? parseInt(match[1]) : 1;
+        }
+
+        function search(page = 1) {
+            const searchTerm = document.getElementById('searchInput').value;
+            const loader = document.getElementById('loader');
+            const resultDiv = document.getElementById('result');
+            const emailContainer = document.querySelector('.email-container');
+
+            loader.style.display = 'inline-block';
+            resultDiv.innerHTML = ''; // 清除之前的搜索结果
+            resultDiv.classList.remove('has-content'); // 移除背景样式
+            emailContainer.style.display = 'none'; // 确保邮箱输入框在搜索开始时隐藏
+
+            fetch('https://你的域名.com/search', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ searchTerm, page }),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                loader.style.display = 'none';
+                console.log('Search response:', data);  // 保留这行用于调试
+
+                if (data.found) {
+                    resultDiv.innerHTML = i18n[currentLanguage].resultsFound;
+                } else {
+                    resultDiv.innerHTML = i18n[currentLanguage].noResults;
+                }
+
+                resultDiv.classList.add('has-content'); // 添加背景样式
+                emailContainer.style.display = 'flex'; // 显示邮箱输入框，使用 flex 布局
+            })
+            .catch(error => {
+                loader.style.display = 'none';
+                console.error('Error:', error);
+                resultDiv.innerHTML = i18n[currentLanguage].searchError + ': ' + error.message;
+                resultDiv.classList.add('has-content'); // 添加背景样式
+                emailContainer.style.display = 'none'; // 发生错误时不显示邮箱输入框
+            });
+        }
+
+        function submitEmail() {
+            const email = document.getElementById('emailInput').value;
+            const searchTerm = document.getElementById('searchInput').value;
+            const found = document.getElementById('result').innerHTML.includes(i18n[currentLanguage].resultsFound);
+            fetch('https://你的域名.com/submit-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, searchTerm, found, language: currentLanguage }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(i18n[currentLanguage].emailSent);
+                } else {
+                    alert(i18n[currentLanguage].emailError);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert(i18n[currentLanguage].emailError);
+            });
+        }
+
+        // 修改 window.onload 函数
+        window.onload = function() {
+            changeLanguage('en');  // 设置初始语言
+        };
+    </script>
+</body>
+</html>
